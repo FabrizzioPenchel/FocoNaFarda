@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemática - ROTA PMMG | Raciocínio Lógico e Exercícios</title>
+    <meta name="description" content="Aulas de Matemática para PMMG: Raciocínio lógico, conectivos lógicos e exercícios práticos.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: { 800: '#161d2f', 900: '#0b0f1a' },
+                        neon: { green: '#4ade80', green_light: '#22c55e' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        * { font-family: 'Inter', system-ui, sans-serif; }
+        body { background-color: #0b0f1a; color: white; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><polygon points="50,0 0,100 100,100" fill="rgba(255, 255, 255, 0.015)"/></svg>'); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #161d2f; }
+        ::-webkit-scrollbar-thumb { background: #4ade80; border-radius: 4px; }
+        .topic-btn.active { background: rgba(74, 222, 128, 0.1); border-left: 4px solid #4ade80; color: #4ade80; }
+        .topic-btn:not(.active) { border-left: 4px solid transparent; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-40 bg-dark-800 bg-opacity-95 backdrop-blur-lg border-b border-white border-opacity-10 py-5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-neon-green rounded-lg flex items-center justify-center font-bold text-dark-900">📚</div>
+                    <h1 class="hidden sm:block text-xl font-bold text-white">ROTA <span class="text-neon-green">PMMG</span></h1>
+                </a>
+                <div class="flex items-center gap-3">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition">
+                        <span class="text-lg">☀️</span>
+                    </button>
+                    <a href="index.html" class="hidden sm:block px-4 py-2 rounded-lg border-2 border-neon-green text-neon-green font-bold text-sm hover:bg-neon-green hover:text-dark-900 transition">
+                        ← Voltar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="flex min-h-screen flex-col lg:flex-row">
+        
+        <!-- Sidebar -->
+        <aside class="hidden lg:flex lg:w-72 bg-dark-800 border-r border-white border-opacity-10 flex-col py-8">
+            <div class="px-6 pb-6 border-b border-white border-opacity-10">
+                <h3 class="font-bold text-lg text-white">Tópicos</h3>
+            </div>
+            <nav class="flex-1 overflow-y-auto px-4 py-4 space-y-2">
+                <button onclick="showTopic(0)" class="topic-btn w-full text-left px-4 py-2 rounded-lg text-gray-300 hover:text-neon-green font-medium text-sm transition active">
+                    01. Conectivos Lógicos
+                </button>
+                <button onclick="showTopic(1)" class="topic-btn w-full text-left px-4 py-2 rounded-lg text-gray-400 hover:text-neon-green font-medium text-sm transition">
+                    02. Tabelas Verdade
+                </button>
+                <button onclick="showTopic(2)" class="topic-btn w-full text-left px-4 py-2 rounded-lg text-gray-400 hover:text-neon-green font-medium text-sm transition">
+                    03. Negação de Proposições
+                </button>
+                <button onclick="showTopic(3)" class="topic-btn w-full text-left px-4 py-2 rounded-lg text-gray-400 hover:text-neon-green font-medium text-sm transition">
+                    04. Equivalências Lógicas
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                
+                <!-- Mobile topic selector -->
+                <div class="lg:hidden mb-6">
+                    <select id="mobileTopic" class="w-full px-4 py-2 border border-gray-600 rounded-lg bg-dark-800 text-white font-medium" onchange="showTopic(parseInt(this.value))">
+                        <option value="0">01. Conectivos Lógicos</option>
+                        <option value="1">02. Tabelas Verdade</option>
+                        <option value="2">03. Negação de Proposições</option>
+                        <option value="3">04. Equivalências Lógicas</option>
+                    </select>
+                </div>
+
+                <!-- Video -->
+                <div class="mb-8 rounded-lg overflow-hidden border border-gray-700">
+                    <iframe 
+                        id="videoFrame"
+                        width="100%" 
+                        height="400"
+                        src="https://www.youtube.com/embed/i8jbzEWEOYk" 
+                        title="Matemática - Aula PMMG" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        class="aspect-video">
+                    </iframe>
+                </div>
+
+                <!-- Content -->
+                <div class="bg-dark-800 border border-gray-700 rounded-lg p-6 sm:p-8">
+                    <h2 id="topicTitle" class="text-4xl font-bold text-neon-green mb-8">Conectivos Lógicos</h2>
+                    
+                    <div id="topicContent">
+                        <p class="text-gray-300 mb-6 text-lg">
+                            Conectivos lógicos são termos (como "e", "ou", "se... então") que unem duas ou mais proposições simples para formar proposições compostas, definindo seu valor de verdade (verdadeiro ou falso).
+                        </p>
+                        
+                        <h3 class="text-2xl font-bold text-neon-green mb-6 mt-8">Os Conectivos Principais</h3>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex gap-4 bg-white bg-opacity-5 p-4 rounded-lg border-l-4 border-neon-green">
+                                <span class="text-neon-green font-bold text-xl flex-shrink-0">¬</span>
+                                <div>
+                                    <strong class="text-neon-green">Negação:</strong>
+                                    <p class="text-gray-300 mt-1">Apenas inverte o valor (se é V vira F).</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4 bg-white bg-opacity-5 p-4 rounded-lg border-l-4 border-neon-green">
+                                <span class="text-neon-green font-bold text-xl flex-shrink-0">∧</span>
+                                <div>
+                                    <strong class="text-neon-green">Conjunção (E):</strong>
+                                    <p class="text-gray-300 mt-1">Somente será verdade se todos forem verdade.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4 bg-white bg-opacity-5 p-4 rounded-lg border-l-4 border-neon-green">
+                                <span class="text-neon-green font-bold text-xl flex-shrink-0">∨</span>
+                                <div>
+                                    <strong class="text-neon-green">Disjunção (OU):</strong>
+                                    <p class="text-gray-300 mt-1">Somente será falso se todos forem falsos.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4 bg-white bg-opacity-5 p-4 rounded-lg border-l-4 border-neon-green">
+                                <span class="text-neon-green font-bold text-xl flex-shrink-0">→</span>
+                                <div>
+                                    <strong class="text-neon-green">Condicional (Se...então):</strong>
+                                    <p class="text-gray-300 mt-1">Falsa apenas se a primeira for verdadeira e a segunda falsa.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4 bg-white bg-opacity-5 p-4 rounded-lg border-l-4 border-neon-green">
+                                <span class="text-neon-green font-bold text-xl flex-shrink-0">↔</span>
+                                <div>
+                                    <strong class="text-neon-green">Bicondicional (Se somente se):</strong>
+                                    <p class="text-gray-300 mt-1">Verdadeira se ambas forem verdadeiras ou ambas falsas.</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="bg-neon-green bg-opacity-10 border-l-4 border-neon-green p-6 rounded-lg mt-8">
+                            <p class="text-neon-green font-bold mb-2">💡 Dica:</p>
+                            <p class="text-gray-300">Pratique montando tabelas verdade. Elas são fundamentais para entender como os conectivos funcionam!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Practice -->
+                <div class="mt-8 bg-dark-800 border border-gray-700 rounded-lg p-6 sm:p-8">
+                    <h3 class="text-2xl font-bold text-white mb-4">🎯 Exercícios Práticos</h3>
+                    <p class="text-gray-300 mb-6">
+                        Após estudar conectivos lógicos, teste seus conhecimentos com nossos simulados.
+                    </p>
+                    <a href="simulados.html" class="inline-block px-6 py-3 bg-neon-green text-dark-900 rounded-lg font-bold hover:bg-neon-green-light transition">
+                        Fazer Simulado de Matemática →
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const topics = [
+            {
+                title: "01. Conectivos Lógicos",
+                content: `
+                    <p class="text-gray-300 mb-6 text-lg">Conectivos lógicos são termos que unem proposições formando proposições compostas.</p>
+                    <h3 class="text-2xl font-bold text-neon-green mb-6 mt-8">Os Conectivos Principais</h3>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex gap-4 bg-white bg-opacity-5 p-4 rounded-lg border-l-4 border-neon-green">
+                            <span class="text-neon-green font-bold">¬</span>
+                            <div><strong class="text-neon-green">Negação:</strong> <p class="text-gray-300 mt-1">Inverte o valor lógico.</p></div>
+                        </li>
+                        <li class="flex gap-4 bg-white bg-opacity-5 p-4 rounded-lg border-l-4 border-neon-green">
+                            <span class="text-neon-green font-bold">∧</span>
+                            <div><strong class="text-neon-green">Conjunção:</strong> <p class="text-gray-300 mt-1">Verdadeira se todas forem verdadeiras.</p></div>
+                        </li>
+                    </ul>
+                `
+            },
+            {
+                title: "02. Tabelas Verdade",
+                content: `<p class="text-gray-300">As tabelas verdade mostram todos os possíveis valores de uma proposição composta baseado nos valores de suas componentes.</p>`
+            },
+            {
+                title: "03. Negação de Proposições",
+                content: `<p class="text-gray-300">A negação de uma proposição simples é apenas inverter seu valor. A negação de uma proposição composta segue regras específicas (Leis de De Morgan).</p>`
+            },
+            {
+                title: "04. Equivalências Lógicas",
+                content: `<p class="text-gray-300">Duas proposições são logicamente equivalentes quando possuem o mesmo valor verdade em todas as situações possíveis.</p>`
+            }
+        ];
+
+        function showTopic(index) {
+            const topic = topics[index];
+            document.getElementById('topicTitle').textContent = topic.title;
+            document.getElementById('topicContent').innerHTML = topic.content;
+            
+            document.querySelectorAll('.topic-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+
+            document.getElementById('mobileTopic').value = index;
+        }
+
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
+            document.body.style.backgroundColor = document.body.style.backgroundColor === 'rgb(243, 244, 246)' ? '#0b0f1a' : '#f3f4f6';
+            document.body.style.color = document.body.style.color === 'white' ? '#111827' : 'white';
+            document.getElementById('darkModeToggle').querySelector('span').textContent = 
+                document.body.style.backgroundColor === '#0b0f1a' ? '☀️' : '🌙';
+        });
+    </script>
+
+</body>
+</html>
