@@ -3,6 +3,9 @@
 // Sistema de Autenticação + Conteúdo Bloqueado
 // ========================================
 
+// ========================================
+// Theme Manager
+// ========================================
 class ThemeManager {
     constructor() {
         this.html = document.documentElement;
@@ -12,6 +15,7 @@ class ThemeManager {
     }
 
     init() {
+        // Default é LIGHT (Clean)
         const savedTheme = localStorage.getItem(this.storageKey) || 'light';
         this.setTheme(savedTheme);
         
@@ -22,19 +26,24 @@ class ThemeManager {
     }
 
     setTheme(theme) {
+        // Remove todas as classes
+        this.html.classList.remove('light', 'dark');
+        this.body.classList.remove('dark-mode');
+        
+        // Adiciona a classe do tema
+        this.html.classList.add(theme);
+        
         if (theme === 'dark') {
-            this.html.classList.add('dark');
             this.body.classList.add('dark-mode');
             if (document.getElementById('darkModeToggle')) {
                 document.getElementById('darkModeToggle').querySelector('span').textContent = '☀️';
             }
         } else {
-            this.html.classList.remove('dark');
-            this.body.classList.remove('dark-mode');
             if (document.getElementById('darkModeToggle')) {
                 document.getElementById('darkModeToggle').querySelector('span').textContent = '🌙';
             }
         }
+        
         localStorage.setItem(this.storageKey, theme);
     }
 

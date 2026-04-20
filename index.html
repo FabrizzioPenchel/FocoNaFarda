@@ -36,18 +36,50 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
         
         * { font-family: 'Inter', system-ui, sans-serif; }
-        html.dark { color-scheme: dark; }
         
-        body.dark-mode {
+        /* LIGHT MODE (Default) - Clean & Professional */
+        html.light {
+            color-scheme: light;
+        }
+        
+        html.light body {
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+        
+        /* DARK MODE - Dark/Neon Original */
+        html.dark {
+            color-scheme: dark;
+        }
+        
+        html.dark body {
             background-color: #0b0f1a;
             color: white;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><polygon points="50,0 0,100 100,100" fill="rgba(255, 255, 255, 0.015)"/></svg>');
         }
 
+        /* Scrollbar - adapta ao tema */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #161d2f; }
-        ::-webkit-scrollbar-thumb { background: #4ade80; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #22c55e; }
+        ::-webkit-scrollbar-track { 
+            background: #f3f4f6;
+        }
+        html.dark ::-webkit-scrollbar-track { 
+            background: #161d2f; 
+        }
+        ::-webkit-scrollbar-thumb { 
+            background: #d1d5db;
+            border-radius: 4px; 
+        }
+        html.dark ::-webkit-scrollbar-thumb { 
+            background: #4ade80;
+            border-radius: 4px; 
+        }
+        ::-webkit-scrollbar-thumb:hover { 
+            background: #9ca3af;
+        }
+        html.dark ::-webkit-scrollbar-thumb:hover { 
+            background: #22c55e; 
+        }
     </style>
 </head>
 <body class="bg-white dark:bg-dark-900 text-gray-900 dark:text-white">
@@ -63,7 +95,7 @@
                         👮
                     </div>
                     <h1 class="hidden sm:block text-xl font-bold text-gray-900 dark:text-white">
-                        Rota da <span class="text-neon-green">Farda</span>
+                        Foco na <span class="text-neon-green">Farda</span>
                     </h1>
                 </div>
 
@@ -261,7 +293,7 @@
                 
                 <!-- Brand -->
                 <div>
-                    <h4 class="font-bold text-lg mb-4 text-gray-900 dark:text-white">Rota da <span class="text-neon-green">Farda</span></h4>
+                    <h4 class="font-bold text-lg mb-4 text-gray-900 dark:text-white">Foco na <span class="text-neon-green">Farda</span></h4>
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                         Plataforma independente de apoio ao candidato mineiro.
                         Estude com consistência. A aprovação é consequência.
